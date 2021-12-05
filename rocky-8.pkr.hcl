@@ -11,7 +11,7 @@ source "qemu" "example" {
   ssh_password      = "%Serveur44"
   ssh_timeout       = "20m"
   vm_name           = "tp-1"
-  memory            = "2048"
+  memory            = "4096"
   net_device        = "virtio-net"
   disk_interface    = "virtio"
   //Time waited by packer before do any action
