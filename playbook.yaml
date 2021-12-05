@@ -9,12 +9,10 @@
     - name: Clonage du repository Golang-myip
       git:
        repo: https://github.com/BastienBalaud/golang-myip.git
-       dest: /home/
+       dest: /home
        clone: yes
        update: yes
-    - name: Changement du répertoire
-      shell:
-       cmd: cd /home/golang-myip
-    - name: Execution du fichier Makefile
-      shell:
+    - name: Execution du fichier Makefile dans son répertoire
+      ansible.builtin.shell:
        cmd: make
+       chdir: /home/golang-myip
