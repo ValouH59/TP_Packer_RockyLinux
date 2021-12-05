@@ -2,7 +2,19 @@
 - hosts: all
   become: yes
   tasks:
-    - name: Install package GIT
+    - name: Installation de Git
       package:
         name: git
-        state: latest 
+        state: latest
+    - name: Clonage du repository Golang-myip
+      git:
+       repo: https://github.com/BastienBalaud/golang-myip.git
+       dest: /home/
+       clone: yes
+       update: yes
+    - name: Changement du répertoire
+      shell:
+       cmd: cd /home/golang-myip
+    - name: Execution du fichier Makefile
+      shell:
+       cmd: make
