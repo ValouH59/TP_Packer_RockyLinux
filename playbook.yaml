@@ -31,22 +31,25 @@ tasks:
     - name: Création du ficher golang-myip.service dans le dossier Temporaire
       ansible.builtin.shell:
        cmd: touch /tmp/golang-myip.service
-       cmd: echo "[Unit]" >> /tmp/golang-myip.service
-       cmd: echo "Description=Service système Golang-MyIP" >> /tmp/golang-myip.service
-       cmd: echo "" >> /tmp/golang-myip.service
-       cmd: echo "#Ciblage du service réseau" >> /tmp/golang-myip.service
-       cmd: echo "After=network.target" >> /tmp/golang-myip.service
-       cmd: echo "" >> /tmp/golang-myip.service
-       cmd: echo "[Service]" >> /tmp/golang-myip.service
-       cmd: echo "" >> /tmp/golang-myip.service
-       cmd: echo "#Sélection du répertoire d'éxécution du fichier" >> /tmp/golang-myip.service
-       cmd: echo "WorkingDirectory=/golang-myip/" >> /tmp/golang-myip.service
-       cmd: echo "ExecStart=/golang-myip/build/server.x86_64" >> /tmp/golang-myip.service
-       cmd: echo "" >> /tmp/golang-myip.service
-       cmd: echo "[Install]" >> /tmp/golang-myip.service
-       cmd: echo "" >> /tmp/golang-myip.service
-       cmd: echo "#Installation pour tout les utilisateurs" >> /tmp/golang-myip.service
-       cmd: echo "WantedBy=multi-user.target" >> /tmp/golang-myip.service
+
+    - name: Ajout du contenu du service
+      shell: |
+       echo "[Unit]
+       Description=Service système Golang-MyIP
+
+       #Ciblage du service réseau
+       After=network.target
+
+       [Service]
+
+       #Sélection du répertoire d'éxécution du fichier
+       WorkingDirectory=/golang-myip/
+       ExecStart=/golang-myip/build/server.x86_64
+
+       [Install]
+
+       #Installation pour tout les utilisateurs
+       WantedBy=multi-user.target" >> /tmp/golang-myip.service
 
     - name: Déplacement du fichier golang-myip.service dans systemd
       ansible.builtin.shell:
