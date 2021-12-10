@@ -28,9 +28,29 @@ tasks:
        cmd: make
        chdir: /golang-myip
 
+    - name: Création du ficher golang-myip.service dans le dossier Temporaire
+      ansible.builtin.shell:
+       cmd: touch /tmp/golang-myip.service
+       cmd: echo "[Unit]" >> /tmp/golang-myip.service
+       cmd: echo "Description=Service système Golang-MyIP" >> /tmp/golang-myip.service
+       cmd: echo "" >> /tmp/golang-myip.service
+       cmd: echo "#Ciblage du service réseau" >> /tmp/golang-myip.service
+       cmd: echo "After=network.target" >> /tmp/golang-myip.service
+       cmd: echo "" >> /tmp/golang-myip.service
+       cmd: echo "[Service]" >> /tmp/golang-myip.service
+       cmd: echo "" >> /tmp/golang-myip.service
+       cmd: echo "#Sélection du répertoire d'éxécution du fichier" >> /tmp/golang-myip.service
+       cmd: echo "WorkingDirectory=/golang-myip/" >> /tmp/golang-myip.service
+       cmd: echo "ExecStart=/golang-myip/build/server.x86_64" >> /tmp/golang-myip.service
+       cmd: echo "" >> /tmp/golang-myip.service
+       cmd: echo "[Install]" >> /tmp/golang-myip.service
+       cmd: echo "" >> /tmp/golang-myip.service
+       cmd: echo "#Installation pour tout les utilisateurs" >> /tmp/golang-myip.service
+       cmd: echo "WantedBy=multi-user.target" >> /tmp/golang-myip.service
+
     - name: Déplacement du fichier golang-myip.service dans systemd
       ansible.builtin.shell:
-       cmd: mv /root/packer-course-bootstrap/golangmyip_service/golang-myip.service /etc/systemd/system/
+       cmd: mv /tmp/golang-myip.service /etc/systemd/system/
 
     - name: Changer temporairement le SELinux en Permissive pour activer le service
       ansible.builtin.shell:
