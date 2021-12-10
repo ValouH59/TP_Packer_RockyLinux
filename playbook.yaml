@@ -1,18 +1,29 @@
 ---
 - hosts: all
   become: yes
+
   tasks:
     - name: Installation de Git
       package:
         name: git
         state: latest
+
     - name: Clonage du repository Golang-myip
       git:
        repo: https://github.com/BastienBalaud/golang-myip.git
-       dest: /home
+       dest: /golang-myip
        clone: yes
        update: yes
+
+    - name: Installation de la commande make
+      ansible.builtin.shell:
+       cmd: yum install make.x86_64 -y
+
+    - name: Installation du langage Go
+      ansible.builtin.shell:
+       cmd: yum install golang.x86_64 -y
+
     - name: Execution du fichier Makefile dans son répertoire
       ansible.builtin.shell:
        cmd: make
-       chdir: /home/golang-myip
+       chdir: /golang-myip
