@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
 
-  tasks:
+tasks:
     - name: Installation de Git
       package:
         name: git
@@ -27,3 +27,23 @@
       ansible.builtin.shell:
        cmd: make
        chdir: /golang-myip
+
+    - name: Déplacement du fichier golang-myip.service dans systemd
+      ansible.builtin.shell:
+       cmd: mv /root/packer-course-bootstrap/golangmyip_service/golang-myip.service /etc/systemd/system/
+
+    - name: Changer temporairement le SELinux en Permissive pour activer le service
+      ansible.builtin.shell:
+       cmd: setenforce 0
+
+    - name: Redémarrage du Daemon système
+      ansible.builtin.shell:
+       cmd: systemctl daemon-reload
+
+    - name: Démarrage du nouveau service Golang-MyIP
+      ansible.builtin.shell:
+       cmd: systemctl start golang-myip
+
+    - name: Activation du service Golang-MyIP au démarrage du système
+      ansible.builtin.shell:
+       cmd: systemctl enable golang-myip
