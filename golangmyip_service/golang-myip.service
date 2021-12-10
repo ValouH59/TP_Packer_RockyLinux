@@ -1,0 +1,17 @@
+[Unit]
+Description=Service système Golang-MyIP
+
+#Ciblage du service réseau
+Before=network-pre.target
+After=network.target
+
+[Service]
+
+#Sélection du répertoire d'éxécution du fichier
+WorkingDirectory=/golang-myip/
+ExecStart=/golang-myip/build/server.x86_64
+
+[Install]
+
+#Installation pour tout les utilisateurs
+WantedBy=multi-user.target
