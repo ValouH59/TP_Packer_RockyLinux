@@ -4,7 +4,7 @@
 
 Après installation de la VM Rocky Linux dans VMware Workstation, on peut installer les prérequis du système
 
-#### Installer Ansible
+### Installer Ansible
 
 Tout d'abord, il faut installer le paquet Ansible pour pouvoir exécuter le playbook.yaml
 
@@ -12,7 +12,7 @@ Tout d'abord, il faut installer le paquet Ansible pour pouvoir exécuter le play
 yum install ansible -y
 ```
 
-#### Installer le package Ansible POSIX
+### Installer le package Ansible POSIX
 
 Ce paquet sera nécessaire pour pouvoir modifier le SELinux en mode Permissive sur la VM que l'on va build
 
@@ -80,9 +80,10 @@ ssh -L 5999:127.0.0.1:5999 root@192.168.1.31
 ```
 
 On lance ensuite le client VNC avec comme adresse IP : 127.0.0.1 et avec le port qui nous a été attribué par Packer. Ici il s'agit du port 5999
+
 Une fenêtre GUI va s'ouvrir et on va alors pouvoir suivre l'installation de la VM en direct
 
-#### Exécution du playbook.yaml
+### Exécution du playbook.yaml
 
 Ansible va donc lancer le playbook.yaml que l'on a précédemment configuré :
 
@@ -146,7 +147,7 @@ Ansible va donc lancer le playbook.yaml que l'on a précédemment configuré :
 Build 'qemu.example' finished after 12 minutes 9 seconds.
 ```
 
-#### Build opérationnel
+### Build opérationnel
 
 Une fois que Packer a terminé le build, il va afficher un message :
 
