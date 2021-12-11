@@ -36,7 +36,7 @@ git clone https://github.com/ValouH59/TP_Packer_RockyLinux.git
 
 ## Que contiennent les fichiers de configuration ?
 
-- golangmyip_service/golang-myip.service : Il s'agit du templace du service golang-myip.service
+- golangmyip_service/golang-myip.service : Il s'agit du template du service golang-myip.service
 - ks/rocky-8.cfg : Contient la configuration automatique de base de Rocky Linux que l'on souhaite build
 - playbook.yaml : Contient les instructions Ansible pour déployer les paquets et services demandés
 - rocky-8.pkr.hcl : Il s'agit du fichier de configuration nécessaire à Packer pour build la VM
