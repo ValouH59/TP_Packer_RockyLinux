@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
 
-tasks:
+  tasks:
     - name: Installation de Git
       package:
         name: git
@@ -71,9 +71,12 @@ tasks:
       ansible.builtin.shell:
        cmd: systemctl enable golang-myip
 
-    - name: Téléchargement du package POSIX pour Ansible
-      ansible.builtin.shell:
-       cmd: yum install ansible-collection-ansible-posix -y
+   # - name: Téléchargement du package POSIX pour Ansible
+   #   ansible.builtin.shell:
+   #    cmd: yum install ansible-collection-ansible-posix -y
+   # 
+   # -> A INSTALLER SUR LA VM PRINCIPALE 
+
 
     - name: Rendre le mode Permissive du SELinux permanent
       ansible.posix.selinux:
