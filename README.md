@@ -103,6 +103,9 @@ Ansible va donc lancer le playbook.yaml que l'on a précédemment configuré :
     qemu.example: TASK [Clonage du repository Golang-myip] ***************************************
     qemu.example: changed: [default]
     qemu.example:
+    qemu.example: TASK [Modification du port 8080 en port 80] ************************************
+    qemu.example: changed: [default]
+    qemu.example:
     qemu.example: TASK [Installation de la commande make] ****************************************
     qemu.example: changed: [default]
     qemu.example:
@@ -140,11 +143,11 @@ Ansible va donc lancer le playbook.yaml que l'on a précédemment configuré :
     qemu.example: changed: [default]
     qemu.example:
     qemu.example: PLAY RECAP *********************************************************************
-    qemu.example: default                    : ok=15   changed=14   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+    qemu.example: default                    : ok=16   changed=15   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
     qemu.example:
 ==> qemu.example: Gracefully halting virtual machine...
 ==> qemu.example: Converting hard drive...
-Build 'qemu.example' finished after 12 minutes 9 seconds.
+Build 'qemu.example' finished after 12 minutes 31 seconds.
 ```
 
 ### Build opérationnel
@@ -152,7 +155,7 @@ Build 'qemu.example' finished after 12 minutes 9 seconds.
 Une fois que Packer a terminé le build, il va afficher un message :
 
 ```
-==> Wait completed after 12 minutes 9 seconds
+==> Wait completed after 12 minutes 31 seconds
 
 ==> Builds finished. The artifacts of successful builds are:
 --> qemu.example: VM files in directory: build-rocky-8
