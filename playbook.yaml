@@ -15,6 +15,10 @@
        clone: yes
        update: yes
 
+    - name: Modification du port 8080 en port 80
+      ansible.builtin.shell:
+       cmd: sed -i 's/args.Port = 8080/args.Port = 80/g' /golang-myip/server.go
+
     - name: Installation de la commande make
       ansible.builtin.shell:
        cmd: yum install make.x86_64 -y
